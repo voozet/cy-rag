@@ -1,0 +1,100 @@
+[
+  {
+    "id": "Q1",
+    "question": "What is the MITRE ATT&CK Valid Accounts technique?",
+    "expected_in_scope": true,
+    "expected_answerable": true,
+    "notes": "Direct factual question, single clear source (MITRE)."
+  },
+  {
+    "id": "Q2",
+    "question": "What phases are described by NIST for incident handling?",
+    "expected_in_scope": true,
+    "expected_answerable": true,
+    "notes": "Direct factual question, single clear source (NIST SP 800-61)."
+  },
+  {
+    "id": "Q3",
+    "question": "What is phishing according to CISA?",
+    "expected_in_scope": true,
+    "expected_answerable": true,
+    "notes": "Direct factual question, single clear source (CISA)."
+  },
+  {
+    "id": "Q4",
+    "question": "How can SQL injection be prevented?",
+    "expected_in_scope": true,
+    "expected_answerable": true,
+    "notes": "Direct factual question, single clear source (OWASP)."
+  },
+  {
+    "id": "Q5",
+    "question": "An attacker used legitimate credentials to access an internal service. Which ATT&CK technique is relevant, and how would defenders detect it?",
+    "expected_in_scope": true,
+    "expected_answerable": true,
+    "notes": "Incident-description style query requiring synthesis of technique + detection guidance from one document."
+  },
+  {
+    "id": "Q6",
+    "question": "What defensive practices can reduce phishing risk, and does multi-factor authentication help?",
+    "expected_in_scope": true,
+    "expected_answerable": true,
+    "notes": "Cross-document synthesis: CISA phishing guidance + NIST SP 800-63B on MFA."
+  },
+  {
+    "id": "Q7",
+    "question": "What is the capital of France?",
+    "expected_in_scope": false,
+    "expected_answerable": false,
+    "notes": "Clearly out-of-scope general knowledge question; must be refused pre-retrieval by Triage."
+  },
+  {
+    "id": "Q8",
+    "question": "What malware did the attacker deploy in the incident?",
+    "expected_in_scope": true,
+    "expected_answerable": false,
+    "notes": "In-scope topic but no incident-specific facts exist in the corpus; must be refused post-retrieval as unsupported rather than hallucinated."
+  },
+  {
+    "id": "Q9",
+    "question": "How do I stop every hacker from attacking my company?",
+    "expected_in_scope": true,
+    "expected_answerable": false,
+    "notes": "Cybersecurity-adjacent but unanswerable as posed (absolute/unbounded claim not supported by any real security guidance); tests whether the system avoids overclaiming."
+  },
+  {
+    "id": "Q10",
+    "question": "What is the latest zero-day vulnerability discovered this week?",
+    "expected_in_scope": true,
+    "expected_answerable": false,
+    "notes": "In-scope topic but requires live/current information the static corpus cannot contain; tests time-sensitivity awareness."
+  },
+  {
+    "id": "Q11",
+    "question": "What does CISA recommend an organization do if it is hit by ransomware?",
+    "expected_in_scope": true,
+    "expected_answerable": true,
+    "notes": "Direct factual question, single clear source (CISA ransomware guide)."
+  },
+  {
+    "id": "Q12",
+    "question": "What's a good recipe for chocolate chip cookies?",
+    "expected_in_scope": false,
+    "expected_answerable": false,
+    "notes": "Unambiguous out-of-scope query, different domain than Q7 to broaden refusal coverage."
+  },
+  {
+    "id": "Q13",
+    "question": "How did adversaries exploit the Langflow AI tool?",
+    "expected_in_scope": true,
+    "expected_answerable": true,
+    "notes": "Direct factual question over the AI-agent-security document added later via the admin panel; exercises the incremental-index add path end to end."
+  },
+  {
+    "id": "Q14",
+    "question": "By how much did AI-enabled attacks increase according to the CrowdStrike report?",
+    "expected_in_scope": true,
+    "expected_answerable": true,
+    "notes": "Single-fact extraction (a specific statistic) from the AI-agent-security document."
+  }
+]

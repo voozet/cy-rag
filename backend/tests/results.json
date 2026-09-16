@@ -1,0 +1,1406 @@
+[
+  {
+    "id": "Q1",
+    "question": "What is the MITRE ATT&CK Valid Accounts technique?",
+    "expected": {
+      "in_scope": true,
+      "answerable": true
+    },
+    "response": {
+      "status": "success",
+      "answer": "The MITRE ATT&CK Valid Accounts technique (T1078) describes adversaries obtaining and abusing credentials of existing accounts to gain Initial Access, Persistence, Privilege Escalation, or Defense Evasion. This technique involves using legitimate credentials, allowing the activity to blend in with normal usage and evade detection. Methods of compromising credentials include credential phishing, credential dumping, brute forcing weak passwords, and purchasing or reusing leaked credentials. The technique includes sub-techniques for different account types, such as Default Accounts, Domain Accounts, Local Accounts, and Cloud Accounts. The impact of this technique varies based on the privilege level of the compromised account, and detection guidance emphasizes monitoring for anomalous authentication events.",
+      "reason": null,
+      "grounded": true,
+      "citations": [
+        {
+          "id": "mitre-attack-valid-accounts-0",
+          "title": "Valid Accounts (T1078)",
+          "source": "MITRE ATT&CK",
+          "url": "https://attack.mitre.org/techniques/T1078/",
+          "section": "Technique Description",
+          "text": "The MITRE ATT&CK Valid Accounts technique (T1078) describes adversaries obtaining and abusing credentials of existing accounts as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Valid Accounts differs from other techniques in that credential material is legitimate to the environment, so activity performed with a compromised account can blend in with normal usage and evade many detections that focus on malware or unauthorized tooling. Adversaries may compromise credentials of users or services in several ways, including credential phishing, credential dumping from memory or configuration files, brute forcing weak passwords, and purchasing or reusing credentials leaked in prior breaches.",
+          "score": 1.244693480597602
+        },
+        {
+          "id": "mitre-attack-valid-accounts-1",
+          "title": "Valid Accounts (T1078)",
+          "source": "MITRE ATT&CK",
+          "url": "https://attack.mitre.org/techniques/T1078/",
+          "section": "Technique Description",
+          "text": ", credential dumping from memory or configuration files, brute forcing weak passwords, and purchasing or reusing credentials leaked in prior breaches. ATT&CK defines several sub-techniques covering different account types: Default Accounts (factory-set or pre-configured credentials that are never rotated), Domain Accounts (credentials for accounts managed by Active Directory or similar directory services, which grant access across many systems), Local Accounts (credentials configured by an organization for use on a single system or service), and Cloud Accounts (credentials for services hosted in a cloud environment, such as AWS IAM users or Azure AD accounts).",
+          "score": 0.8662536806530423
+        },
+        {
+          "id": "mitre-attack-valid-accounts-2",
+          "title": "Valid Accounts (T1078)",
+          "source": "MITRE ATT&CK",
+          "url": "https://attack.mitre.org/techniques/T1078/",
+          "section": "Technique Description",
+          "text": "a single system or service), and Cloud Accounts (credentials for services hosted in a cloud environment, such as AWS IAM users or Azure AD accounts). Because a compromised valid account inherits whatever permissions were assigned to it, the impact of this technique scales with the privilege level of the account: compromise of an administrative or service account is significantly more consequential than compromise of a standard user account with limited access. Detection guidance from MITRE emphasizes monitoring for authentication events that are anomalous relative to a baseline of normal account behavior, including logins at unusual times, from unusual geographic locations or network segments, using unusual protocols, or followed by unusual patterns of resource access.",
+          "score": 0.8469465454419454
+        },
+        {
+          "id": "mitre-attack-valid-accounts-3",
+          "title": "Valid Accounts (T1078)",
+          "source": "MITRE ATT&CK",
+          "url": "https://attack.mitre.org/techniques/T1078/",
+          "section": "Technique Description",
+          "text": "at unusual times, from unusual geographic locations or network segments, using unusual protocols, or followed by unusual patterns of resource access. Correlating authentication logs with endpoint and network telemetry can help distinguish legitimate account use from an adversary operating under a compromised identity. Mitigations commonly associated with this technique include enforcing multi-factor authentication, applying least-privilege access controls, rotating credentials and disabling default accounts, and monitoring privileged account usage closely.",
+          "score": 0.7829020063082377
+        }
+      ],
+      "agents": [
+        {
+          "name": "triage",
+          "status": "completed",
+          "summary": "Cybersecurity query detected",
+          "details": {
+            "in_scope": true,
+            "intent": "inquire about a specific attack technique",
+            "topics": [
+              "MITRE ATT&CK",
+              "attack techniques",
+              "Valid Accounts"
+            ],
+            "reason": "The question references a specific technique from the MITRE ATT&CK framework, which is related to cybersecurity."
+          }
+        },
+        {
+          "name": "rag_analyst",
+          "status": "completed",
+          "summary": "Retrieved 5 evidence chunks",
+          "details": {
+            "retrieved": 5,
+            "evidence_ids": [
+              "mitre-attack-valid-accounts-0",
+              "mitre-attack-valid-accounts-1",
+              "mitre-attack-valid-accounts-2",
+              "mitre-attack-valid-accounts-3",
+              "nist-mfa-access-control-2"
+            ],
+            "evidence": [
+              {
+                "id": "mitre-attack-valid-accounts-0",
+                "title": "Valid Accounts (T1078)",
+                "score": 1.2447
+              },
+              {
+                "id": "mitre-attack-valid-accounts-1",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.8663
+              },
+              {
+                "id": "mitre-attack-valid-accounts-2",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.8469
+              },
+              {
+                "id": "mitre-attack-valid-accounts-3",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.7829
+              },
+              {
+                "id": "nist-mfa-access-control-2",
+                "title": "Digital Identity Guidelines — Authentication and Access Control (SP 800-63B)",
+                "score": 0.7113
+              }
+            ],
+            "answerable": true,
+            "reason": "The evidence provides a comprehensive description of the Valid Accounts technique, including its purpose, methods of credential compromise, and the implications of account privilege levels."
+          }
+        },
+        {
+          "name": "verification",
+          "status": "passed",
+          "summary": "Verified 5 claims with no unsupported claims",
+          "details": {
+            "verified": true,
+            "unsupported_claims": [],
+            "invalid_evidence_ids": [],
+            "reason": "All claims in the answer are supported by the provided evidence."
+          }
+        }
+      ]
+    },
+    "error": null,
+    "scores": {
+      "scope_correct": true,
+      "outcome_correct": true,
+      "grounded": true,
+      "has_citations": true
+    }
+  },
+  {
+    "id": "Q2",
+    "question": "What phases are described by NIST for incident handling?",
+    "expected": {
+      "in_scope": true,
+      "answerable": true
+    },
+    "response": {
+      "status": "success",
+      "answer": "The phases described by NIST for incident handling are: Preparation; Detection and Analysis; Containment, Eradication, and Recovery; and Post-Incident Activity.",
+      "reason": null,
+      "grounded": true,
+      "citations": [
+        {
+          "id": "nist-incident-response-0",
+          "title": "Computer Security Incident Handling Guide (SP 800-61)",
+          "source": "NIST",
+          "url": "https://csrc.nist.gov/pubs/sp/800/61/r2/final",
+          "section": "Incident Response",
+          "text": "NIST Special Publication 800-61 (Computer Security Incident Handling Guide) presents a lifecycle model for incident response built around four major phases: Preparation; Detection and Analysis; Containment, Eradication, and Recovery; and Post-Incident Activity. In the Preparation phase, an organization establishes an incident response capability, including policies, communication plans, tooling, and training, and also works to prevent incidents by securing networks, systems, and applications so that the number of incidents is reduced. The Detection and Analysis phase covers the identification of precursors and indicators of a possible incident, the triage and validation of alerts to confirm whether an actual incident has occurred, and the prioritization of incidents based on functional impact, information impact, and recoverability effort.",
+          "score": 0.9770865519841512
+        }
+      ],
+      "agents": [
+        {
+          "name": "triage",
+          "status": "completed",
+          "summary": "Cybersecurity query detected",
+          "details": {
+            "in_scope": true,
+            "intent": "inquire about NIST incident handling phases",
+            "topics": [
+              "NIST",
+              "incident handling",
+              "phases"
+            ],
+            "reason": "The question references NIST and incident handling phases, which are specific to cybersecurity."
+          }
+        },
+        {
+          "name": "rag_analyst",
+          "status": "completed",
+          "summary": "Retrieved 5 evidence chunks",
+          "details": {
+            "retrieved": 5,
+            "evidence_ids": [
+              "nist-incident-response-0",
+              "nist-incident-response-2",
+              "nist-incident-response-1",
+              "nist-incident-response-3",
+              "cisa-ransomware-2"
+            ],
+            "evidence": [
+              {
+                "id": "nist-incident-response-0",
+                "title": "Computer Security Incident Handling Guide (SP 800-61)",
+                "score": 0.9771
+              },
+              {
+                "id": "nist-incident-response-2",
+                "title": "Computer Security Incident Handling Guide (SP 800-61)",
+                "score": 0.9141
+              },
+              {
+                "id": "nist-incident-response-1",
+                "title": "Computer Security Incident Handling Guide (SP 800-61)",
+                "score": 0.8296
+              },
+              {
+                "id": "nist-incident-response-3",
+                "title": "Computer Security Incident Handling Guide (SP 800-61)",
+                "score": 0.7107
+              },
+              {
+                "id": "cisa-ransomware-2",
+                "title": "#StopRansomware Guide",
+                "score": 0.6864
+              }
+            ],
+            "answerable": true,
+            "reason": "The answer is supported by the evidence from NIST Special Publication 800-61, which outlines the four phases of incident response."
+          }
+        },
+        {
+          "name": "verification",
+          "status": "passed",
+          "summary": "Verified 1 claims with no unsupported claims",
+          "details": {
+            "verified": true,
+            "unsupported_claims": [],
+            "invalid_evidence_ids": [],
+            "reason": "The answer accurately reflects the phases of incident handling as described in the provided NIST evidence."
+          }
+        }
+      ]
+    },
+    "error": null,
+    "scores": {
+      "scope_correct": true,
+      "outcome_correct": true,
+      "grounded": true,
+      "has_citations": true
+    }
+  },
+  {
+    "id": "Q3",
+    "question": "What is phishing according to CISA?",
+    "expected": {
+      "in_scope": true,
+      "answerable": true
+    },
+    "response": {
+      "status": "success",
+      "answer": "CISA describes phishing as a form of social engineering in which an attacker sends a fraudulent message designed to trick a person into revealing sensitive information, transferring money, or installing malicious software. It is typically delivered by email, with variants including smishing (via SMS) and vishing (via voice call).",
+      "reason": null,
+      "grounded": true,
+      "citations": [
+        {
+          "id": "cisa-phishing-0",
+          "title": "Phishing Guidance",
+          "source": "CISA",
+          "url": "https://www.cisa.gov/topics/cyber-threats-and-advisories/phishing",
+          "section": "Phishing",
+          "text": "CISA describes phishing as a form of social engineering in which an attacker sends a fraudulent message designed to trick a person into revealing sensitive information, transferring money, or installing malicious software. Phishing is typically delivered by email, but CISA notes related variants including smishing (phishing via SMS text message) and vishing (phishing via voice call), as well as spear phishing, which targets a specific individual or organization using information gathered about the target to make the message more convincing. Common phishing lures described by CISA include messages that impersonate a trusted brand, colleague, or government agency; create a false sense of urgency (such as claiming an account will be suspended); or offer something enticing to the recipient. CISA's recommended defensive practices span both people and technology.",
+          "score": 1.0055683930714925
+        }
+      ],
+      "agents": [
+        {
+          "name": "triage",
+          "status": "completed",
+          "summary": "Cybersecurity query detected",
+          "details": {
+            "in_scope": true,
+            "intent": "define phishing",
+            "topics": [
+              "phishing",
+              "CISA"
+            ],
+            "reason": "The question asks for a definition of phishing, which is a cybersecurity concept, and references CISA, a relevant authority in the field."
+          }
+        },
+        {
+          "name": "rag_analyst",
+          "status": "completed",
+          "summary": "Retrieved 5 evidence chunks",
+          "details": {
+            "retrieved": 5,
+            "evidence_ids": [
+              "cisa-phishing-0",
+              "cisa-ransomware-1",
+              "cisa-phishing-1",
+              "cisa-phishing-2",
+              "cisa-ransomware-0"
+            ],
+            "evidence": [
+              {
+                "id": "cisa-phishing-0",
+                "title": "Phishing Guidance",
+                "score": 1.0056
+              },
+              {
+                "id": "cisa-ransomware-1",
+                "title": "#StopRansomware Guide",
+                "score": 0.9136
+              },
+              {
+                "id": "cisa-phishing-1",
+                "title": "Phishing Guidance",
+                "score": 0.9121
+              },
+              {
+                "id": "cisa-phishing-2",
+                "title": "Phishing Guidance",
+                "score": 0.9076
+              },
+              {
+                "id": "cisa-ransomware-0",
+                "title": "#StopRansomware Guide",
+                "score": 0.8131
+              }
+            ],
+            "answerable": true,
+            "reason": "The definition of phishing according to CISA is clearly provided in the evidence."
+          }
+        },
+        {
+          "name": "verification",
+          "status": "passed",
+          "summary": "Verified 3 claims with no unsupported claims",
+          "details": {
+            "verified": true,
+            "unsupported_claims": [],
+            "invalid_evidence_ids": [],
+            "reason": "The answer accurately reflects the information provided in the evidence from CISA regarding phishing, including its definition, methods of delivery, and variants."
+          }
+        }
+      ]
+    },
+    "error": null,
+    "scores": {
+      "scope_correct": true,
+      "outcome_correct": true,
+      "grounded": true,
+      "has_citations": true
+    }
+  },
+  {
+    "id": "Q4",
+    "question": "How can SQL injection be prevented?",
+    "expected": {
+      "in_scope": true,
+      "answerable": true
+    },
+    "response": {
+      "status": "success",
+      "answer": "SQL injection can be prevented by using parameterized queries (prepared statements), which separate SQL command structure from data values, ensuring user input cannot alter the query's meaning. Other defenses include using vetted database APIs or ORM frameworks, strict input validation with allow-lists, proper escaping of special characters, applying the principle of least privilege to database accounts, using a web application firewall, and conducting regular code reviews and automated testing for injection flaws.",
+      "reason": null,
+      "grounded": true,
+      "citations": [
+        {
+          "id": "owasp-sql-injection-0",
+          "title": "SQL Injection",
+          "source": "OWASP",
+          "url": "https://owasp.org/www-community/attacks/SQL_Injection",
+          "section": "Injection",
+          "text": "OWASP describes SQL injection as an attack technique in which an attacker supplies untrusted input that is incorporated into a SQL query in a way that alters the query's intended logic, potentially allowing the attacker to read or modify data they should not have access to, bypass authentication, or in some cases execute administrative operations on the database. SQL injection is possible whenever application code builds a query by directly concatenating user-supplied input into a SQL statement rather than treating that input strictly as data. OWASP's primary recommended defense is the use of parameterized queries (also called prepared statements), in which the SQL command structure is defined separately from the data values, so that user input can never change the meaning of the query regardless of its content.",
+          "score": 0.8815917730331421
+        },
+        {
+          "id": "owasp-sql-injection-1",
+          "title": "SQL Injection",
+          "source": "OWASP",
+          "url": "https://owasp.org/www-community/attacks/SQL_Injection",
+          "section": "Injection",
+          "text": "command structure is defined separately from the data values, so that user input can never change the meaning of the query regardless of its content. A related defense is the use of safe, vetted database APIs or Object-Relational Mapping (ORM) frameworks that construct queries safely by default. Where dynamic query construction cannot be fully avoided, OWASP recommends strict input validation using allow-lists for expected formats (such as validating that an identifier matches an expected pattern) and proper escaping of any special characters using an escaping scheme specific to the target database engine, though OWASP notes that escaping alone is a weaker and more error-prone defense than parameterization.",
+          "score": 0.8510563453038533
+        },
+        {
+          "id": "owasp-sql-injection-2",
+          "title": "SQL Injection",
+          "source": "OWASP",
+          "url": "https://owasp.org/www-community/attacks/SQL_Injection",
+          "section": "Injection",
+          "text": "scheme specific to the target database engine, though OWASP notes that escaping alone is a weaker and more error-prone defense than parameterization. OWASP also recommends applying the principle of least privilege to database accounts used by applications, so that even if injection occurs, the account's permissions limit the actions an attacker can take, for example by avoiding use of database administrator accounts for routine application queries and disabling unnecessary database functionality such as stored procedures that are not required. Additional defense-in-depth measures include using a web application firewall to help detect and block known injection patterns, and conducting regular code review and automated static or dynamic testing specifically targeted at identifying injection flaws before deployment.",
+          "score": 0.8246637940406799
+        }
+      ],
+      "agents": [
+        {
+          "name": "triage",
+          "status": "completed",
+          "summary": "Cybersecurity query detected",
+          "details": {
+            "in_scope": true,
+            "intent": "prevent SQL injection",
+            "topics": [
+              "SQL injection",
+              "prevention techniques"
+            ],
+            "reason": "The question addresses a specific attack technique (SQL injection) and seeks information on prevention methods, which is relevant to cybersecurity."
+          }
+        },
+        {
+          "name": "rag_analyst",
+          "status": "completed",
+          "summary": "Retrieved 5 evidence chunks",
+          "details": {
+            "retrieved": 5,
+            "evidence_ids": [
+              "owasp-sql-injection-0",
+              "owasp-sql-injection-1",
+              "owasp-sql-injection-2",
+              "cisa-ransomware-2",
+              "cisa-phishing-1"
+            ],
+            "evidence": [
+              {
+                "id": "owasp-sql-injection-0",
+                "title": "SQL Injection",
+                "score": 0.8816
+              },
+              {
+                "id": "owasp-sql-injection-1",
+                "title": "SQL Injection",
+                "score": 0.8511
+              },
+              {
+                "id": "owasp-sql-injection-2",
+                "title": "SQL Injection",
+                "score": 0.8247
+              },
+              {
+                "id": "cisa-ransomware-2",
+                "title": "#StopRansomware Guide",
+                "score": 0.6604
+              },
+              {
+                "id": "cisa-phishing-1",
+                "title": "Phishing Guidance",
+                "score": 0.6568
+              }
+            ],
+            "answerable": true,
+            "reason": "The answer is supported by multiple pieces of evidence from OWASP that detail various methods to prevent SQL injection."
+          }
+        },
+        {
+          "name": "verification",
+          "status": "passed",
+          "summary": "Verified 7 claims with no unsupported claims",
+          "details": {
+            "verified": true,
+            "unsupported_claims": [],
+            "invalid_evidence_ids": [],
+            "reason": "All claims in the answer are supported by the provided evidence from OWASP regarding SQL injection prevention techniques."
+          }
+        }
+      ]
+    },
+    "error": null,
+    "scores": {
+      "scope_correct": true,
+      "outcome_correct": true,
+      "grounded": true,
+      "has_citations": true
+    }
+  },
+  {
+    "id": "Q5",
+    "question": "An attacker used legitimate credentials to access an internal service. Which ATT&CK technique is relevant, and how would defenders detect it?",
+    "expected": {
+      "in_scope": true,
+      "answerable": true
+    },
+    "response": {
+      "status": "success",
+      "answer": "The relevant ATT&CK technique is Valid Accounts (T1078). Defenders can detect it by monitoring for anomalous authentication events relative to a baseline of normal account behavior, such as logins at unusual times, from unusual geographic locations, using unusual protocols, or followed by unusual patterns of resource access.",
+      "reason": null,
+      "grounded": true,
+      "citations": [
+        {
+          "id": "mitre-attack-valid-accounts-0",
+          "title": "Valid Accounts (T1078)",
+          "source": "MITRE ATT&CK",
+          "url": "https://attack.mitre.org/techniques/T1078/",
+          "section": "Technique Description",
+          "text": "The MITRE ATT&CK Valid Accounts technique (T1078) describes adversaries obtaining and abusing credentials of existing accounts as a means of gaining Initial Access, Persistence, Privilege Escalation, or Defense Evasion. Valid Accounts differs from other techniques in that credential material is legitimate to the environment, so activity performed with a compromised account can blend in with normal usage and evade many detections that focus on malware or unauthorized tooling. Adversaries may compromise credentials of users or services in several ways, including credential phishing, credential dumping from memory or configuration files, brute forcing weak passwords, and purchasing or reusing credentials leaked in prior breaches.",
+          "score": 0.8836255720683507
+        },
+        {
+          "id": "mitre-attack-valid-accounts-2",
+          "title": "Valid Accounts (T1078)",
+          "source": "MITRE ATT&CK",
+          "url": "https://attack.mitre.org/techniques/T1078/",
+          "section": "Technique Description",
+          "text": "a single system or service), and Cloud Accounts (credentials for services hosted in a cloud environment, such as AWS IAM users or Azure AD accounts). Because a compromised valid account inherits whatever permissions were assigned to it, the impact of this technique scales with the privilege level of the account: compromise of an administrative or service account is significantly more consequential than compromise of a standard user account with limited access. Detection guidance from MITRE emphasizes monitoring for authentication events that are anomalous relative to a baseline of normal account behavior, including logins at unusual times, from unusual geographic locations or network segments, using unusual protocols, or followed by unusual patterns of resource access.",
+          "score": 0.7998945764132909
+        },
+        {
+          "id": "mitre-attack-valid-accounts-3",
+          "title": "Valid Accounts (T1078)",
+          "source": "MITRE ATT&CK",
+          "url": "https://attack.mitre.org/techniques/T1078/",
+          "section": "Technique Description",
+          "text": "at unusual times, from unusual geographic locations or network segments, using unusual protocols, or followed by unusual patterns of resource access. Correlating authentication logs with endpoint and network telemetry can help distinguish legitimate account use from an adversary operating under a compromised identity. Mitigations commonly associated with this technique include enforcing multi-factor authentication, applying least-privilege access controls, rotating credentials and disabling default accounts, and monitoring privileged account usage closely.",
+          "score": 0.790494624205998
+        }
+      ],
+      "agents": [
+        {
+          "name": "triage",
+          "status": "completed",
+          "summary": "Cybersecurity query detected",
+          "details": {
+            "in_scope": true,
+            "intent": "identify relevant ATT&CK technique and detection methods",
+            "topics": [
+              "ATT&CK techniques",
+              "credential misuse",
+              "defense detection"
+            ],
+            "reason": "The question references a specific attack scenario involving legitimate credentials and seeks to identify a relevant technique from the MITRE ATT&CK framework, which is a cybersecurity topic."
+          }
+        },
+        {
+          "name": "rag_analyst",
+          "status": "completed",
+          "summary": "Retrieved 5 evidence chunks",
+          "details": {
+            "retrieved": 5,
+            "evidence_ids": [
+              "mitre-attack-valid-accounts-0",
+              "mitre-attack-valid-accounts-1",
+              "mitre-attack-valid-accounts-2",
+              "mitre-attack-valid-accounts-3",
+              "cisa-phishing-2"
+            ],
+            "evidence": [
+              {
+                "id": "mitre-attack-valid-accounts-0",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.8836
+              },
+              {
+                "id": "mitre-attack-valid-accounts-1",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.8269
+              },
+              {
+                "id": "mitre-attack-valid-accounts-2",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.7999
+              },
+              {
+                "id": "mitre-attack-valid-accounts-3",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.7905
+              },
+              {
+                "id": "cisa-phishing-2",
+                "title": "Phishing Guidance",
+                "score": 0.7541
+              }
+            ],
+            "answerable": true,
+            "reason": "The evidence clearly identifies the technique as Valid Accounts (T1078) and provides specific detection methods related to monitoring anomalous authentication events."
+          }
+        },
+        {
+          "name": "verification",
+          "status": "passed",
+          "summary": "Verified 2 claims with no unsupported claims",
+          "details": {
+            "verified": true,
+            "unsupported_claims": [],
+            "invalid_evidence_ids": [],
+            "reason": "The answer correctly identifies the ATT&CK technique (T1078) and accurately describes the detection methods based on the provided evidence."
+          }
+        }
+      ]
+    },
+    "error": null,
+    "scores": {
+      "scope_correct": true,
+      "outcome_correct": true,
+      "grounded": true,
+      "has_citations": true
+    }
+  },
+  {
+    "id": "Q6",
+    "question": "What defensive practices can reduce phishing risk, and does multi-factor authentication help?",
+    "expected": {
+      "in_scope": true,
+      "answerable": true
+    },
+    "response": {
+      "status": "success",
+      "answer": "Defensive practices that can reduce phishing risk include providing regular security awareness training for employees, establishing a mechanism for reporting suspected phishing messages, deploying phishing-resistant multi-factor authentication, implementing email authentication protocols (SPF, DKIM, DMARC), using web and email filtering to block malicious domains and attachments, and keeping software patched. Multi-factor authentication helps by ensuring that a stolen password alone is insufficient for an attacker to gain access.",
+      "reason": null,
+      "grounded": true,
+      "citations": [
+        {
+          "id": "cisa-phishing-2",
+          "title": "Phishing Guidance",
+          "source": "CISA",
+          "url": "https://www.cisa.gov/topics/cyber-threats-and-advisories/phishing",
+          "section": "Phishing",
+          "text": "ted attachments, and requests for credentials or payment, and should establish a simple mechanism for employees to report suspected phishing messages. On the technical side, CISA recommends deploying phishing-resistant multi-factor authentication so that a stolen password alone is insufficient for an attacker to gain access, implementing email authentication protocols such as SPF, DKIM, and DMARC to reduce spoofed messages, using web and email filtering to block known malicious domains and attachments, and keeping software patched to reduce the impact if a malicious link or attachment is opened. CISA also advises organizations to have an incident reporting and response process specifically for phishing, so that credentials entered on a phishing site can be reset quickly and any resulting account activity can be investigated, limiting the damage from successful phishing attempts.",
+          "score": 0.870598263006944
+        },
+        {
+          "id": "cisa-phishing-1",
+          "title": "Phishing Guidance",
+          "source": "CISA",
+          "url": "https://www.cisa.gov/topics/cyber-threats-and-advisories/phishing",
+          "section": "Phishing",
+          "text": "g an account will be suspended); or offer something enticing to the recipient. CISA's recommended defensive practices span both people and technology. On the human side, organizations should provide regular security awareness training so users can recognize suspicious sender addresses, mismatched or shortened links, unexpected attachments, and requests for credentials or payment, and should establish a simple mechanism for employees to report suspected phishing messages.",
+          "score": 0.8449951456143305
+        },
+        {
+          "id": "cisa-ransomware-1",
+          "title": "#StopRansomware Guide",
+          "source": "CISA",
+          "url": "https://www.cisa.gov/stopransomware/ransomware-guide",
+          "section": "Ransomware",
+          "text": "publish or sell it, a tactic CISA refers to as double extortion, which is used to pressure victims into paying even if they can restore from backups. CISA outlines recommended prevention practices including maintaining offline, encrypted backups of critical data and regularly testing the restoration process; keeping operating systems, software, and firmware patched and up to date; enforcing phishing-resistant multi-factor authentication, particularly for remote access services such as VPNs and RDP; disabling unused ports and protocols, especially RDP if it is not required; and applying the principle of least privilege to limit the ability of a compromised account to move laterally or access sensitive systems.",
+          "score": 0.8486898009593671
+        },
+        {
+          "id": "nist-mfa-access-control-1",
+          "title": "Digital Identity Guidelines — Authentication and Access Control (SP 800-63B)",
+          "source": "NIST",
+          "url": "https://pages.nist.gov/800-63-3/sp800-63b.html",
+          "section": "Authenticator Assurance",
+          "text": "uthenticator app), or something you are (a biometric), and is intended for use cases where compromise of a single factor would create meaningful risk. AAL3 requires a hardware-based authenticator and proof of possession of a cryptographic key through a protocol resistant to verifier impersonation, and is intended for the highest-risk scenarios. NIST notes that multi-factor authentication substantially reduces the risk from credential theft techniques such as phishing and credential stuffing, because a stolen password alone is insufficient for an attacker to authenticate.",
+          "score": 0.8153415973369892
+        }
+      ],
+      "agents": [
+        {
+          "name": "triage",
+          "status": "completed",
+          "summary": "Cybersecurity query detected",
+          "details": {
+            "in_scope": true,
+            "intent": "inquire about defensive practices against phishing",
+            "topics": [
+              "phishing",
+              "defensive practices",
+              "multi-factor authentication"
+            ],
+            "reason": "The question addresses specific cybersecurity practices related to phishing risk and mentions multi-factor authentication, which is a security control."
+          }
+        },
+        {
+          "name": "rag_analyst",
+          "status": "completed",
+          "summary": "Retrieved 5 evidence chunks",
+          "details": {
+            "retrieved": 5,
+            "evidence_ids": [
+              "cisa-phishing-2",
+              "cisa-ransomware-1",
+              "cisa-phishing-1",
+              "mitre-attack-valid-accounts-3",
+              "nist-mfa-access-control-1"
+            ],
+            "evidence": [
+              {
+                "id": "cisa-phishing-2",
+                "title": "Phishing Guidance",
+                "score": 0.8706
+              },
+              {
+                "id": "cisa-ransomware-1",
+                "title": "#StopRansomware Guide",
+                "score": 0.8487
+              },
+              {
+                "id": "cisa-phishing-1",
+                "title": "Phishing Guidance",
+                "score": 0.845
+              },
+              {
+                "id": "mitre-attack-valid-accounts-3",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.8386
+              },
+              {
+                "id": "nist-mfa-access-control-1",
+                "title": "Digital Identity Guidelines — Authentication and Access Control (SP 800-63B)",
+                "score": 0.8153
+              }
+            ],
+            "answerable": true,
+            "reason": "The answer is supported by multiple pieces of evidence detailing defensive practices against phishing and the effectiveness of multi-factor authentication."
+          }
+        },
+        {
+          "name": "verification",
+          "status": "passed",
+          "summary": "Verified 6 claims with no unsupported claims",
+          "details": {
+            "verified": true,
+            "unsupported_claims": [],
+            "invalid_evidence_ids": [],
+            "reason": "All claims in the answer are supported by the provided evidence."
+          }
+        }
+      ]
+    },
+    "error": null,
+    "scores": {
+      "scope_correct": true,
+      "outcome_correct": true,
+      "grounded": true,
+      "has_citations": true
+    }
+  },
+  {
+    "id": "Q7",
+    "question": "What is the capital of France?",
+    "expected": {
+      "in_scope": false,
+      "answerable": false
+    },
+    "response": {
+      "status": "refused",
+      "answer": null,
+      "reason": "unrelated topic",
+      "grounded": false,
+      "citations": [],
+      "agents": [
+        {
+          "name": "triage",
+          "status": "completed",
+          "summary": "Query is outside cybersecurity scope",
+          "details": {
+            "in_scope": false,
+            "intent": "unknown",
+            "topics": [],
+            "reason": "unrelated topic"
+          }
+        },
+        {
+          "name": "rag_analyst",
+          "status": "skipped",
+          "summary": "Retrieval and generation skipped",
+          "details": {}
+        },
+        {
+          "name": "verification",
+          "status": "skipped",
+          "summary": "Verification skipped",
+          "details": {}
+        }
+      ]
+    },
+    "error": null,
+    "scores": {
+      "scope_correct": true,
+      "outcome_correct": true,
+      "grounded": null,
+      "has_citations": null
+    }
+  },
+  {
+    "id": "Q8",
+    "question": "What malware did the attacker deploy in the incident?",
+    "expected": {
+      "in_scope": true,
+      "answerable": false
+    },
+    "response": {
+      "status": "refused",
+      "answer": null,
+      "reason": "The evidence provided does not specify any particular malware that was deployed in the incident.",
+      "grounded": false,
+      "citations": [],
+      "agents": [
+        {
+          "name": "triage",
+          "status": "completed",
+          "summary": "Cybersecurity query detected",
+          "details": {
+            "in_scope": true,
+            "intent": "inquire about specific malware used in a cybersecurity incident",
+            "topics": [
+              "malware",
+              "cybersecurity incident"
+            ],
+            "reason": "The question pertains to malware deployment in a cybersecurity context."
+          }
+        },
+        {
+          "name": "rag_analyst",
+          "status": "completed",
+          "summary": "Retrieved 5 evidence chunks",
+          "details": {
+            "retrieved": 5,
+            "evidence_ids": [
+              "nist-incident-response-0",
+              "vulnerabilities-in-ai-agents-and-tools-1",
+              "cisa-ransomware-0",
+              "nist-incident-response-1",
+              "vulnerabilities-in-ai-agents-and-tools-0"
+            ],
+            "evidence": [
+              {
+                "id": "nist-incident-response-0",
+                "title": "Computer Security Incident Handling Guide (SP 800-61)",
+                "score": 0.7621
+              },
+              {
+                "id": "vulnerabilities-in-ai-agents-and-tools-1",
+                "title": "Vulnerabilities in AI agents and tools",
+                "score": 0.7538
+              },
+              {
+                "id": "cisa-ransomware-0",
+                "title": "#StopRansomware Guide",
+                "score": 0.7498
+              },
+              {
+                "id": "nist-incident-response-1",
+                "title": "Computer Security Incident Handling Guide (SP 800-61)",
+                "score": 0.7355
+              },
+              {
+                "id": "vulnerabilities-in-ai-agents-and-tools-0",
+                "title": "Vulnerabilities in AI agents and tools",
+                "score": 0.7099
+              }
+            ],
+            "answerable": false,
+            "reason": "The evidence provided does not specify any particular malware that was deployed in the incident."
+          }
+        },
+        {
+          "name": "verification",
+          "status": "skipped",
+          "summary": "Verification skipped because evidence was insufficient",
+          "details": {}
+        }
+      ]
+    },
+    "error": null,
+    "scores": {
+      "scope_correct": true,
+      "outcome_correct": true,
+      "grounded": null,
+      "has_citations": null
+    }
+  },
+  {
+    "id": "Q9",
+    "question": "How do I stop every hacker from attacking my company?",
+    "expected": {
+      "in_scope": true,
+      "answerable": false
+    },
+    "response": {
+      "status": "success",
+      "answer": "To stop hackers from attacking your company, you should implement several cybersecurity measures: maintain offline, encrypted backups of critical data and regularly test the restoration process; keep operating systems, software, and firmware patched and up to date; enforce phishing-resistant multi-factor authentication, especially for remote access services; disable unused ports and protocols; and apply the principle of least privilege to limit access. Additionally, provide regular security awareness training for employees to recognize phishing attempts and establish a mechanism for reporting suspicious messages.",
+      "reason": null,
+      "grounded": true,
+      "citations": [
+        {
+          "id": "cisa-ransomware-1",
+          "title": "#StopRansomware Guide",
+          "source": "CISA",
+          "url": "https://www.cisa.gov/stopransomware/ransomware-guide",
+          "section": "Ransomware",
+          "text": "publish or sell it, a tactic CISA refers to as double extortion, which is used to pressure victims into paying even if they can restore from backups. CISA outlines recommended prevention practices including maintaining offline, encrypted backups of critical data and regularly testing the restoration process; keeping operating systems, software, and firmware patched and up to date; enforcing phishing-resistant multi-factor authentication, particularly for remote access services such as VPNs and RDP; disabling unused ports and protocols, especially RDP if it is not required; and applying the principle of least privilege to limit the ability of a compromised account to move laterally or access sensitive systems.",
+          "score": 0.6165864062309265
+        },
+        {
+          "id": "cisa-phishing-1",
+          "title": "Phishing Guidance",
+          "source": "CISA",
+          "url": "https://www.cisa.gov/topics/cyber-threats-and-advisories/phishing",
+          "section": "Phishing",
+          "text": "g an account will be suspended); or offer something enticing to the recipient. CISA's recommended defensive practices span both people and technology. On the human side, organizations should provide regular security awareness training so users can recognize suspicious sender addresses, mismatched or shortened links, unexpected attachments, and requests for credentials or payment, and should establish a simple mechanism for employees to report suspected phishing messages.",
+          "score": 0.609431803226471
+        }
+      ],
+      "agents": [
+        {
+          "name": "triage",
+          "status": "completed",
+          "summary": "Cybersecurity query detected",
+          "details": {
+            "in_scope": true,
+            "intent": "seek advice on cybersecurity measures",
+            "topics": [
+              "hacker prevention",
+              "cybersecurity",
+              "company security"
+            ],
+            "reason": "The question pertains to measures for preventing hacking, which is a cybersecurity topic."
+          }
+        },
+        {
+          "name": "rag_analyst",
+          "status": "completed",
+          "summary": "Retrieved 5 evidence chunks",
+          "details": {
+            "retrieved": 5,
+            "evidence_ids": [
+              "cisa-ransomware-1",
+              "cisa-phishing-1",
+              "mitre-attack-valid-accounts-0",
+              "mitre-attack-valid-accounts-3",
+              "nist-incident-response-0"
+            ],
+            "evidence": [
+              {
+                "id": "cisa-ransomware-1",
+                "title": "#StopRansomware Guide",
+                "score": 0.6166
+              },
+              {
+                "id": "cisa-phishing-1",
+                "title": "Phishing Guidance",
+                "score": 0.6094
+              },
+              {
+                "id": "mitre-attack-valid-accounts-0",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.605
+              },
+              {
+                "id": "mitre-attack-valid-accounts-3",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.6011
+              },
+              {
+                "id": "nist-incident-response-0",
+                "title": "Computer Security Incident Handling Guide (SP 800-61)",
+                "score": 0.5909
+              }
+            ],
+            "answerable": true,
+            "reason": "The answer is supported by the recommended prevention practices outlined in the CISA #StopRansomware Guide and the phishing guidance from CISA."
+          }
+        },
+        {
+          "name": "verification",
+          "status": "passed",
+          "summary": "Verified 5 claims with no unsupported claims",
+          "details": {
+            "verified": true,
+            "unsupported_claims": [],
+            "invalid_evidence_ids": [],
+            "reason": "All claims in the answer are supported by the provided evidence."
+          }
+        }
+      ]
+    },
+    "error": null,
+    "scores": {
+      "scope_correct": true,
+      "outcome_correct": false,
+      "grounded": true,
+      "has_citations": true
+    }
+  },
+  {
+    "id": "Q10",
+    "question": "What is the latest zero-day vulnerability discovered this week?",
+    "expected": {
+      "in_scope": true,
+      "answerable": false
+    },
+    "response": {
+      "status": "refused",
+      "answer": null,
+      "reason": "The evidence provided does not contain any information about a recent zero-day vulnerability discovered this week.",
+      "grounded": false,
+      "citations": [],
+      "agents": [
+        {
+          "name": "triage",
+          "status": "completed",
+          "summary": "Cybersecurity query detected",
+          "details": {
+            "in_scope": true,
+            "intent": "inquire about recent cybersecurity vulnerabilities",
+            "topics": [
+              "zero-day vulnerability"
+            ],
+            "reason": "The question pertains to a specific type of cybersecurity threat."
+          }
+        },
+        {
+          "name": "rag_analyst",
+          "status": "completed",
+          "summary": "Retrieved 5 evidence chunks",
+          "details": {
+            "retrieved": 5,
+            "evidence_ids": [
+              "vulnerabilities-in-ai-agents-and-tools-0",
+              "nist-mfa-access-control-2",
+              "nist-incident-response-0",
+              "mitre-attack-valid-accounts-2",
+              "mitre-attack-valid-accounts-0"
+            ],
+            "evidence": [
+              {
+                "id": "vulnerabilities-in-ai-agents-and-tools-0",
+                "title": "Vulnerabilities in AI agents and tools",
+                "score": 0.6535
+              },
+              {
+                "id": "nist-mfa-access-control-2",
+                "title": "Digital Identity Guidelines — Authentication and Access Control (SP 800-63B)",
+                "score": 0.6532
+              },
+              {
+                "id": "nist-incident-response-0",
+                "title": "Computer Security Incident Handling Guide (SP 800-61)",
+                "score": 0.6442
+              },
+              {
+                "id": "mitre-attack-valid-accounts-2",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.6331
+              },
+              {
+                "id": "mitre-attack-valid-accounts-0",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.6316
+              }
+            ],
+            "answerable": false,
+            "reason": "The evidence provided does not contain any information about a recent zero-day vulnerability discovered this week."
+          }
+        },
+        {
+          "name": "verification",
+          "status": "skipped",
+          "summary": "Verification skipped because evidence was insufficient",
+          "details": {}
+        }
+      ]
+    },
+    "error": null,
+    "scores": {
+      "scope_correct": true,
+      "outcome_correct": true,
+      "grounded": null,
+      "has_citations": null
+    }
+  },
+  {
+    "id": "Q11",
+    "question": "What does CISA recommend an organization do if it is hit by ransomware?",
+    "expected": {
+      "in_scope": true,
+      "answerable": true
+    },
+    "response": {
+      "status": "success",
+      "answer": "CISA recommends that organizations have a ransomware-specific incident response plan, isolate affected systems immediately, preserve evidence, and report the incident to CISA and law enforcement. They also advise against paying the ransom.",
+      "reason": null,
+      "grounded": true,
+      "citations": [
+        {
+          "id": "cisa-ransomware-2",
+          "title": "#StopRansomware Guide",
+          "source": "CISA",
+          "url": "https://www.cisa.gov/stopransomware/ransomware-guide",
+          "section": "Ransomware",
+          "text": "t required; and applying the principle of least privilege to limit the ability of a compromised account to move laterally or access sensitive systems. For response, CISA recommends that organizations have a ransomware-specific incident response plan that designates roles and communication channels in advance, and advises against paying the ransom, noting that payment does not guarantee recovery of data, does not guarantee stolen data will not be leaked, and may encourage further attacks. If an incident occurs, CISA recommends isolating affected systems immediately to prevent further spread, preserving evidence such as ransom notes and logs for investigation, and reporting the incident to CISA and law enforcement such as the FBI, who can provide assistance and may have decryption tools available for some ransomware families through resources such as the No More Ransom project.",
+          "score": 0.9080858872486994
+        }
+      ],
+      "agents": [
+        {
+          "name": "triage",
+          "status": "completed",
+          "summary": "Cybersecurity query detected",
+          "details": {
+            "in_scope": true,
+            "intent": "inquire about ransomware response recommendations",
+            "topics": [
+              "CISA",
+              "ransomware",
+              "incident response"
+            ],
+            "reason": "The question references CISA and seeks information on recommended actions for organizations facing a ransomware incident, which is a cybersecurity topic."
+          }
+        },
+        {
+          "name": "rag_analyst",
+          "status": "completed",
+          "summary": "Retrieved 5 evidence chunks",
+          "details": {
+            "retrieved": 5,
+            "evidence_ids": [
+              "cisa-ransomware-2",
+              "cisa-ransomware-1",
+              "cisa-ransomware-0",
+              "cisa-phishing-1",
+              "cisa-phishing-2"
+            ],
+            "evidence": [
+              {
+                "id": "cisa-ransomware-2",
+                "title": "#StopRansomware Guide",
+                "score": 0.9081
+              },
+              {
+                "id": "cisa-ransomware-1",
+                "title": "#StopRansomware Guide",
+                "score": 0.8744
+              },
+              {
+                "id": "cisa-ransomware-0",
+                "title": "#StopRansomware Guide",
+                "score": 0.8633
+              },
+              {
+                "id": "cisa-phishing-1",
+                "title": "Phishing Guidance",
+                "score": 0.7955
+              },
+              {
+                "id": "cisa-phishing-2",
+                "title": "Phishing Guidance",
+                "score": 0.793
+              }
+            ],
+            "answerable": true,
+            "reason": "The answer is supported by the information in evidence ID cisa-ransomware-2, which details CISA's recommendations for responding to ransomware incidents."
+          }
+        },
+        {
+          "name": "verification",
+          "status": "passed",
+          "summary": "Verified 5 claims with no unsupported claims",
+          "details": {
+            "verified": true,
+            "unsupported_claims": [],
+            "invalid_evidence_ids": [],
+            "reason": "All claims in the answer are supported by the provided evidence."
+          }
+        }
+      ]
+    },
+    "error": null,
+    "scores": {
+      "scope_correct": true,
+      "outcome_correct": true,
+      "grounded": true,
+      "has_citations": true
+    }
+  },
+  {
+    "id": "Q12",
+    "question": "What's a good recipe for chocolate chip cookies?",
+    "expected": {
+      "in_scope": false,
+      "answerable": false
+    },
+    "response": {
+      "status": "refused",
+      "answer": null,
+      "reason": "unrelated topic",
+      "grounded": false,
+      "citations": [],
+      "agents": [
+        {
+          "name": "triage",
+          "status": "completed",
+          "summary": "Query is outside cybersecurity scope",
+          "details": {
+            "in_scope": false,
+            "intent": "N/A",
+            "topics": [],
+            "reason": "unrelated topic"
+          }
+        },
+        {
+          "name": "rag_analyst",
+          "status": "skipped",
+          "summary": "Retrieval and generation skipped",
+          "details": {}
+        },
+        {
+          "name": "verification",
+          "status": "skipped",
+          "summary": "Verification skipped",
+          "details": {}
+        }
+      ]
+    },
+    "error": null,
+    "scores": {
+      "scope_correct": true,
+      "outcome_correct": true,
+      "grounded": null,
+      "has_citations": null
+    }
+  },
+  {
+    "id": "Q13",
+    "question": "How did adversaries exploit the Langflow AI tool?",
+    "expected": {
+      "in_scope": true,
+      "answerable": true
+    },
+    "response": {
+      "status": "success",
+      "answer": "Adversaries exploited a critical vulnerability in Langflow AI to establish persistence, steal credentials, and deploy malware.",
+      "reason": null,
+      "grounded": true,
+      "citations": [
+        {
+          "id": "vulnerabilities-in-ai-agents-and-tools-1",
+          "title": "Vulnerabilities in AI agents and tools",
+          "source": "CrowdStrike",
+          "url": "https://www.crowdstrike.com/en-us/cybersecurity-101/artificial-intelligence/ai-monitoring/",
+          "section": "AI Agent Security",
+          "text": "use AI to execute attacks that previously required expertise they didn't have. The report also documents adversaries going after AI systems directly. Since April 2025, multiple threat actors have exploited a critical vulnerability in Langflow AI — a widely used tool for building AI agents and workflows — to establish persistence, steal credentials, and deploy malware. The AI tool wasn't incidental to the attack. It was the target.",
+          "score": 0.9513262510299683
+        }
+      ],
+      "agents": [
+        {
+          "name": "triage",
+          "status": "completed",
+          "summary": "Cybersecurity query detected",
+          "details": {
+            "in_scope": true,
+            "intent": "inquire about exploitation of a specific tool",
+            "topics": [
+              "adversarial exploitation",
+              "AI tool security"
+            ],
+            "reason": "The question pertains to how adversaries exploit a specific tool, which is relevant to cybersecurity."
+          }
+        },
+        {
+          "name": "rag_analyst",
+          "status": "completed",
+          "summary": "Retrieved 5 evidence chunks",
+          "details": {
+            "retrieved": 5,
+            "evidence_ids": [
+              "vulnerabilities-in-ai-agents-and-tools-1",
+              "vulnerabilities-in-ai-agents-and-tools-0",
+              "mitre-attack-valid-accounts-0",
+              "owasp-sql-injection-1",
+              "mitre-attack-valid-accounts-2"
+            ],
+            "evidence": [
+              {
+                "id": "vulnerabilities-in-ai-agents-and-tools-1",
+                "title": "Vulnerabilities in AI agents and tools",
+                "score": 0.9513
+              },
+              {
+                "id": "vulnerabilities-in-ai-agents-and-tools-0",
+                "title": "Vulnerabilities in AI agents and tools",
+                "score": 0.8641
+              },
+              {
+                "id": "mitre-attack-valid-accounts-0",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.7239
+              },
+              {
+                "id": "owasp-sql-injection-1",
+                "title": "SQL Injection",
+                "score": 0.6576
+              },
+              {
+                "id": "mitre-attack-valid-accounts-2",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.6494
+              }
+            ],
+            "answerable": true,
+            "reason": "The evidence clearly states that adversaries exploited a critical vulnerability in Langflow AI for malicious activities."
+          }
+        },
+        {
+          "name": "verification",
+          "status": "passed",
+          "summary": "Verified 2 claims with no unsupported claims",
+          "details": {
+            "verified": true,
+            "unsupported_claims": [],
+            "invalid_evidence_ids": [],
+            "reason": "The answer accurately reflects the evidence provided, which states that adversaries exploited a critical vulnerability in Langflow AI to establish persistence, steal credentials, and deploy malware."
+          }
+        }
+      ]
+    },
+    "error": null,
+    "scores": {
+      "scope_correct": true,
+      "outcome_correct": true,
+      "grounded": true,
+      "has_citations": true
+    }
+  },
+  {
+    "id": "Q14",
+    "question": "By how much did AI-enabled attacks increase according to the CrowdStrike report?",
+    "expected": {
+      "in_scope": true,
+      "answerable": true
+    },
+    "response": {
+      "status": "success",
+      "answer": "Attacks by AI-enabled adversaries increased by 89% in 2025 according to the CrowdStrike report.",
+      "reason": null,
+      "grounded": true,
+      "citations": [
+        {
+          "id": "vulnerabilities-in-ai-agents-and-tools-0",
+          "title": "Vulnerabilities in AI agents and tools",
+          "source": "CrowdStrike",
+          "url": "https://www.crowdstrike.com/en-us/cybersecurity-101/artificial-intelligence/ai-monitoring/",
+          "section": "AI Agent Security",
+          "text": "When a user types a prompt into a generative AI (GenAI) tool, or when an AI agent reads a document and decides what to do next, something is happening that most traditional security tools can't see. That interaction layer — between users, models, agents, and data — is where a new category of attacks is taking shape. Adversaries noticed the gap quickly. According to the CrowdStrike 2026 Global Threat Report, attacks by AI-enabled adversaries increased by 89% in 2025. This number reflects something important: AI isn't just helping a handful of sophisticated nation-state threat actors move faster; it's raising the floor for everyone. Less-skilled adversaries can now use AI to execute attacks that previously required expertise they didn't have. The report also documents adversaries going after AI systems directly.",
+          "score": 0.9441331707514249
+        }
+      ],
+      "agents": [
+        {
+          "name": "triage",
+          "status": "completed",
+          "summary": "Cybersecurity query detected",
+          "details": {
+            "in_scope": true,
+            "intent": "inquire about statistics on AI-enabled attacks",
+            "topics": [
+              "AI-enabled attacks",
+              "CrowdStrike report"
+            ],
+            "reason": "The question references a specific report related to cybersecurity and the increase in AI-enabled attacks."
+          }
+        },
+        {
+          "name": "rag_analyst",
+          "status": "completed",
+          "summary": "Retrieved 5 evidence chunks",
+          "details": {
+            "retrieved": 5,
+            "evidence_ids": [
+              "vulnerabilities-in-ai-agents-and-tools-0",
+              "vulnerabilities-in-ai-agents-and-tools-1",
+              "nist-incident-response-0",
+              "nist-incident-response-1",
+              "mitre-attack-valid-accounts-2"
+            ],
+            "evidence": [
+              {
+                "id": "vulnerabilities-in-ai-agents-and-tools-0",
+                "title": "Vulnerabilities in AI agents and tools",
+                "score": 0.9441
+              },
+              {
+                "id": "vulnerabilities-in-ai-agents-and-tools-1",
+                "title": "Vulnerabilities in AI agents and tools",
+                "score": 0.7158
+              },
+              {
+                "id": "nist-incident-response-0",
+                "title": "Computer Security Incident Handling Guide (SP 800-61)",
+                "score": 0.6701
+              },
+              {
+                "id": "nist-incident-response-1",
+                "title": "Computer Security Incident Handling Guide (SP 800-61)",
+                "score": 0.6257
+              },
+              {
+                "id": "mitre-attack-valid-accounts-2",
+                "title": "Valid Accounts (T1078)",
+                "score": 0.6004
+              }
+            ],
+            "answerable": true,
+            "reason": "The evidence clearly states the percentage increase in AI-enabled attacks as reported by CrowdStrike."
+          }
+        },
+        {
+          "name": "verification",
+          "status": "passed",
+          "summary": "Verified 1 claims with no unsupported claims",
+          "details": {
+            "verified": true,
+            "unsupported_claims": [],
+            "invalid_evidence_ids": [],
+            "reason": "The claim that attacks by AI-enabled adversaries increased by 89% in 2025 according to the CrowdStrike report is directly supported by the evidence provided."
+          }
+        }
+      ]
+    },
+    "error": null,
+    "scores": {
+      "scope_correct": true,
+      "outcome_correct": true,
+      "grounded": true,
+      "has_citations": true
+    }
+  }
+]
