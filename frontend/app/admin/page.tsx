@@ -31,14 +31,8 @@ export default function AdminPage() {
     const [error, setError] = useState("");
     const [status, setStatus] = useState("");
 
-    // Always attempt a load on mount, with whatever token is stored (possibly
-    // none) -- if the backend has no ADMIN_TOKEN configured, this succeeds
-    // with an empty token and the panel opens straight away, no prompt.
-    // Only a real 401 (a token IS required and we don't have the right one)
-    // shows the gate.
     useEffect(() => {
         attemptLoad(getStoredAdminToken());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     async function attemptLoad(candidateToken: string) {
