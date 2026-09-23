@@ -11,6 +11,11 @@ class Settings(BaseSettings):
     llm_base_url: str = "https://api.openai.com/v1"
     llm_api_key: str = ""
     llm_model: str = "gpt-4o-mini"
+    # Fallback LLM (OpenRouter)
+    fallback_enabled: bool = True
+    openrouter_base_url: str = "https://openrouter.ai/api/v1"
+    openrouter_api_key: str = ""
+    openrouter_model: str = "openai/gpt-4o-mini"
     embedding_model: str = "BAAI/bge-small-en-v1.5"
     top_k: int = 5
     candidate_k: int = 15
