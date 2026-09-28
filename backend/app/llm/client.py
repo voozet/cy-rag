@@ -41,7 +41,7 @@ def chat(system: str, user: str, *, json_mode: bool = False) -> str:
 
     kwargs = {
         "messages": messages,
-        "temperature": 0,
+        "temperature": 0.0,
         "max_tokens": DEFAULT_MAX_TOKENS,
     }
 
@@ -50,34 +50,26 @@ def chat(system: str, user: str, *, json_mode: bool = False) -> str:
 
     errors: list[str] = []
 
-    if _openrouter_client and settings.openrouter_models:
+    if _openrouter_client and settings.openrouter_model:
         try:
-            logger.info("Routing request to OpenRouter (models: %s)", settings.openrouter_models)
-            openrouter_kwargs = dict(kwargs)
-            openrouter_kwargs["extra_body"] = {
-                "models": settings.openrouter_models,
-                "provider": {
-                    "allow_fallbacks": True
-                }
-            }
-
+            logger.info("Routing request to OpenRouter model: %s", settings.openrouter_model)
             response = _openrouter_client.chat.completions.create(
-                model=settings.openrouter_models[0],
-                **openrouter_kwargs,
+                model=settings.openrouter_model,
+                **kwargs,
             )
             content = response.choices[0].message.content
             if content:
+                logger.info("OpenRouter request successful")
                 return content
             raise ValueError("OpenRouter returned empty response")
         except Exception as e:
-            errors.append(f"OpenRouter ({settings.openrouter_models}): {e}")
-            logger.warning("OpenRouter failed: %s. Attempting Hugging Face...", e)
+            logger.warning("OpenRouter failed: %s", e)
+            errors.append(f"OpenRouter ({settings.openrouter_model}): {e}")
 
     if _hf_client:
         try:
-            logger.info("Routing request to Hugging Face (model: %s)", settings.hf_model)
+            logger.info("Routing request to Hugging Face model: %s", settings.hf_model)
             hf_kwargs = dict(kwargs)
-
             try:
                 response = _hf_client.chat.completions.create(
                     model=settings.hf_model,
@@ -85,7 +77,7 @@ def chat(system: str, user: str, *, json_mode: bool = False) -> str:
                 )
             except Exception as hf_err:
                 if json_mode and "response_format" in str(hf_err).lower():
-                    logger.warning("HF rejected response_format; retrying without it...")
+                    logger.info("Hugging Face rejected response_format; retrying without it")
                     hf_kwargs.pop("response_format", None)
                     response = _hf_client.chat.completions.create(
                         model=settings.hf_model,
@@ -96,10 +88,12 @@ def chat(system: str, user: str, *, json_mode: bool = False) -> str:
 
             content = response.choices[0].message.content
             if content:
+                logger.info("Hugging Face request successful")
                 return content
             raise ValueError("Hugging Face returned empty response")
         except Exception as e:
-            errors.append(f"Hugging Face ({settings.hf_model}): {e}")
             logger.error("Hugging Face failed: %s", e)
+            errors.append(f"Hugging Face ({settings.hf_model}): {e}")
 
+    logger.critical("All LLM providers failed")
     raise RuntimeError("All LLM providers failed: " + " | ".join(errors))
