@@ -4,18 +4,14 @@ from app.config import settings
 
 logger = logging.getLogger(__name__)
 
-# Primary Client (GapGPT / OpenAI compatible)
-_primary_client = (
-    OpenAI(api_key=settings.llm_api_key, base_url=settings.llm_base_url)
-    if settings.llm_api_key
-    else None
-)
+DEFAULT_MAX_TOKENS = 1500
 
-# Fallback Client (OpenRouter)
-_fallback_client = (
+_openrouter_client = (
     OpenAI(
         api_key=settings.openrouter_api_key,
         base_url=settings.openrouter_base_url,
+        timeout=settings.openrouter_timeout,
+        max_retries=1,
         default_headers={
             "HTTP-Referer": "http://localhost:3000",
             "X-Title": settings.app_name,
@@ -25,44 +21,85 @@ _fallback_client = (
     else None
 )
 
+_hf_client = (
+    OpenAI(
+        api_key=settings.hf_api_key,
+        base_url=settings.hf_base_url,
+        timeout=settings.hf_timeout,
+        max_retries=1,
+    )
+    if settings.hf_api_key
+    else None
+)
+
+
 def chat(system: str, user: str, *, json_mode: bool = False) -> str:
     messages = [
         {"role": "system", "content": system},
         {"role": "user", "content": user},
     ]
+
     kwargs = {
         "messages": messages,
         "temperature": 0,
+        "max_tokens": DEFAULT_MAX_TOKENS,
     }
+
     if json_mode:
         kwargs["response_format"] = {"type": "json_object"}
 
-    # 1. Try Primary LLM (GapGPT)
-    if _primary_client:
+    errors: list[str] = []
+
+    if _openrouter_client and settings.openrouter_models:
         try:
-            response = _primary_client.chat.completions.create(
-                model=settings.llm_model,
-                **kwargs,
+            logger.info("Routing request to OpenRouter (models: %s)", settings.openrouter_models)
+            openrouter_kwargs = dict(kwargs)
+            openrouter_kwargs["extra_body"] = {
+                "models": settings.openrouter_models,
+                "provider": {
+                    "allow_fallbacks": True
+                }
+            }
+
+            response = _openrouter_client.chat.completions.create(
+                model=settings.openrouter_models[0],
+                **openrouter_kwargs,
             )
-            return response.choices[0].message.content or ""
+            content = response.choices[0].message.content
+            if content:
+                return content
+            raise ValueError("OpenRouter returned empty response")
         except Exception as e:
-            logger.warning(f"Primary LLM request failed: {e}. Attempting fallback...")
-            if not settings.fallback_enabled or not _fallback_client:
-                raise e
-    elif not (_fallback_client and settings.fallback_enabled):
-        raise RuntimeError("No valid LLM client configured (both Primary and OpenRouter keys are missing)")
+            errors.append(f"OpenRouter ({settings.openrouter_models}): {e}")
+            logger.warning("OpenRouter failed: %s. Attempting Hugging Face...", e)
 
-    # 2. Try Fallback LLM (OpenRouter)
-    if settings.fallback_enabled and _fallback_client:
+    if _hf_client:
         try:
-            logger.info(f"Routing request to OpenRouter (model: {settings.openrouter_model})")
-            response = _fallback_client.chat.completions.create(
-                model=settings.openrouter_model,
-                **kwargs,
-            )
-            return response.choices[0].message.content or ""
-        except Exception as fallback_err:
-            logger.error(f"Fallback to OpenRouter also failed: {fallback_err}")
-            raise fallback_err
+            logger.info("Routing request to Hugging Face (model: %s)", settings.hf_model)
+            hf_kwargs = dict(kwargs)
 
-    raise RuntimeError("LLM request failed and no fallback available.")
+            try:
+                response = _hf_client.chat.completions.create(
+                    model=settings.hf_model,
+                    **hf_kwargs,
+                )
+            except Exception as hf_err:
+                if json_mode and "response_format" in str(hf_err).lower():
+                    logger.warning("HF rejected response_format; retrying without it...")
+                    hf_kwargs.pop("response_format", None)
+                    response = _hf_client.chat.completions.create(
+                        model=settings.hf_model,
+                        **hf_kwargs,
+                    )
+                else:
+                    raise hf_err
+
+            content = response.choices[0].message.content
+            if content:
+                return content
+            raise ValueError("Hugging Face returned empty response")
+        except Exception as e:
+            errors.append(f"Hugging Face ({settings.hf_model}): {e}")
+            logger.error("Hugging Face failed: %s", e)
+
+    raise RuntimeError("All LLM providers failed: " + " | ".join(errors))

@@ -1107,3 +1107,63 @@ svg {
     border-top: 1px solid var(--border);
     margin: 24px 0;
 }
+
+
+
+
+.evalStatsGrid {
+    width: 100%;
+    min-width: 0;
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.statCard {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+.statNum {
+    font-size: clamp(18px, 2.2vw, 26px);
+    font-weight: 750;
+    margin-top: 6px;
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+    .evalStatsGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .statCard {
+        padding: 12px 14px;
+    }
+
+    .statNum {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 380px) {
+    .evalStatsGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .statCard {
+        padding: 10px 12px;
+    }
+
+    .statNum {
+        font-size: 17px;
+    }
+}

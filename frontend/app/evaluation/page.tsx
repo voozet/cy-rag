@@ -112,20 +112,20 @@ export default function EvaluationPage() {
         </div>}
 
         {data && s && <>
-            <section className="adminGrid" style={{gridTemplateColumns: "repeat(4, 1fr)", marginTop: 18}}>
-                <div className="card">
+            <section className="evalStatsGrid">
+                <div className="card statCard">
                     <div className="hint">Scope accuracy</div>
                     <div className="statNum">{s.scope_correct}/{s.total}</div>
                 </div>
-                <div className="card">
+                <div className="card statCard">
                     <div className="hint">Outcome accuracy</div>
                     <div className="statNum">{s.outcome_correct}/{s.total}</div>
                 </div>
-                <div className="card">
+                <div className="card statCard">
                     <div className="hint">Grounded (of answered)</div>
                     <div className="statNum">{s.grounded_correct}/{s.grounded_checked}</div>
                 </div>
-                <div className="card">
+                <div className="card statCard">
                     <div className="hint">Errors</div>
                     <div className="statNum" style={{color: s.errors ? "var(--bad)" : undefined}}>{s.errors}</div>
                 </div>
