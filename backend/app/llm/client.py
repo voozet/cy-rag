@@ -6,6 +6,17 @@ logger = logging.getLogger(__name__)
 
 DEFAULT_MAX_TOKENS = 1500
 
+_gapgpt_client = (
+    OpenAI(
+        api_key=settings.gapgpt_api_key,
+        base_url=settings.gapgpt_base_url,
+        timeout=settings.gapgpt_timeout,
+        max_retries=1,
+    )
+    if settings.gapgpt_api_key
+    else None
+)
+
 _openrouter_client = (
     OpenAI(
         api_key=settings.openrouter_api_key,
@@ -50,6 +61,24 @@ def chat(system: str, user: str, *, json_mode: bool = False) -> str:
 
     errors: list[str] = []
 
+    # Attempt 1: GapGPT
+    if _gapgpt_client and settings.gapgpt_model:
+        try:
+            logger.info("Routing request to GapGPT model: %s", settings.gapgpt_model)
+            response = _gapgpt_client.chat.completions.create(
+                model=settings.gapgpt_model,
+                **kwargs,
+            )
+            content = response.choices[0].message.content
+            if content:
+                logger.info("GapGPT request successful")
+                return content
+            raise ValueError("GapGPT returned empty response")
+        except Exception as e:
+            logger.warning("GapGPT failed: %s", e)
+            errors.append(f"GapGPT ({settings.gapgpt_model}): {e}")
+
+    # Attempt 2: OpenRouter
     if _openrouter_client and settings.openrouter_model:
         try:
             logger.info("Routing request to OpenRouter model: %s", settings.openrouter_model)
@@ -66,7 +95,8 @@ def chat(system: str, user: str, *, json_mode: bool = False) -> str:
             logger.warning("OpenRouter failed: %s", e)
             errors.append(f"OpenRouter ({settings.openrouter_model}): {e}")
 
-    if _hf_client:
+    # Attempt 3: Hugging Face
+    if _hf_client and settings.hf_model:
         try:
             logger.info("Routing request to Hugging Face model: %s", settings.hf_model)
             hf_kwargs = dict(kwargs)

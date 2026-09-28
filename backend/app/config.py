@@ -1,7 +1,5 @@
 from pathlib import Path
-
 from pydantic_settings import BaseSettings, SettingsConfigDict
-
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 
@@ -12,11 +10,17 @@ class Settings(BaseSettings):
     api_port: int = 8000
     cors_origins: str = "http://localhost:3000"
 
+    # ── GapGPT ─────────────────────────────────────────────────────────────
+    gapgpt_base_url: str = "https://api.gapgpt.app/v1"
+    gapgpt_api_key: str = ""
+    gapgpt_model: str = "gpt-4o"
+    gapgpt_timeout: float = 15.0
+
     # ── OpenRouter ─────────────────────────────────────────────────────────
     openrouter_base_url: str = "https://openrouter.ai/api/v1"
     openrouter_api_key: str = ""
     openrouter_model: str = "openrouter/free"
-    openrouter_timeout: float = 10.0
+    openrouter_timeout: float = 15.0
 
     # ── Hugging Face ───────────────────────────────────────────────────────
     hf_base_url: str = "https://router.huggingface.co/v1"
